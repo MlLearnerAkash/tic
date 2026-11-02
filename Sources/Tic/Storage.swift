@@ -12,9 +12,13 @@ final class TicStorage {
     private let fileManager = FileManager.default
 
     private init() {
-        let base = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
-            ?? fileManager.homeDirectoryForCurrentUser.appendingPathComponent("Library/Application Support")
-        rootURL = base.appendingPathComponent("Tic", isDirectory: true)
+        if let custom = ProcessInfo.processInfo.environment["TIC_DATA_DIR"], !custom.isEmpty {
+            rootURL = URL(fileURLWithPath: custom, isDirectory: true)
+        } else {
+            let base = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
+                ?? fileManager.homeDirectoryForCurrentUser.appendingPathComponent("Library/Application Support")
+            rootURL = base.appendingPathComponent("Tic", isDirectory: true)
+        }
         imagesURL = rootURL.appendingPathComponent("Clipboard", isDirectory: true)
         stateURL = rootURL.appendingPathComponent("state.json")
         try? fileManager.createDirectory(at: rootURL, withIntermediateDirectories: true)

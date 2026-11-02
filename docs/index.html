@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tic — Todos, clipboard history and focus in your menu bar</title>
+<meta name="description" content="A tiny native macOS menu-bar app for todos, clipboard history and a focus timer. No account, no cloud, no analytics. Free download for macOS 14+.">
+<meta name="theme-color" content="#faf6ed">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tic — Three tools. One icon. Zero cloud.">
+<meta property="og:description" content="Todos, clipboard history and a focus timer in your menu bar. Native, local and free for macOS.">
+<meta property="og:image" content="assets/window-clipboard.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="assets/icon-64.png">
+<link rel="apple-touch-icon" href="assets/icon-512.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top" aria-label="Tic home">
+      <img src="assets/icon-64.png" alt="" width="28" height="28">
+      <span>Tic</span>
+    </a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#features">Features</a>
+      <a href="#screens">Screenshots</a>
+      <a href="#shortcuts">Shortcuts</a>
+      <a href="#install">Install</a>
+      <a href="https://github.com/MlLearnerAkash/tic" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+    <a class="btn btn-small btn-primary" href="https://github.com/MlLearnerAkash/tic/releases/download/v1.0.0/Tic-1.0.dmg" download>
+      Download
+    </a>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" id="top">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow"><span class="pulse"></span> Free · macOS 14+ · 1.6 MB</span>
+        <h1>Three tools.<br>One icon.<br><em>Zero cloud.</em></h1>
+        <p class="lede">
+          Tic puts your to-do list, everything you copy, and a focus timer
+          in the menu bar — so the little things stop interrupting the big thing.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://github.com/MlLearnerAkash/tic/releases/download/v1.0.0/Tic-1.0.dmg" download>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Download for macOS
+          </a>
+          <a class="btn btn-ghost" href="#install">How to install</a>
+        </div>
+        <p class="fineprint">
+          Apple silicon · ad-hoc signed · <a href="#faq">first-launch note</a>
+        </p>
+        <ul class="hero-points">
+          <li><span>✓</span> Today-first todos with confetti</li>
+          <li><span>✓</span> Clipboard history that skips passwords</li>
+          <li><span>✓</span> Do Not Disturb via Shortcuts</li>
+        </ul>
+      </div>
+
+      <div class="hero-art" aria-hidden="true">
+        <div class="menu-mock">
+          <span class="menu-left">Finder&nbsp;&nbsp; File&nbsp;&nbsp; Edit&nbsp;&nbsp; View</span>
+          <span class="menu-right"><b class="tic-mark">✓</b> Focus&nbsp; 24:58</span>
+        </div>
+
+        <figure class="popover-frame hero-popover">
+          <img src="assets/popover-todos.png" width="840" height="1140" alt="Tic's Todos tab with today's list">
+        </figure>
+
+        <div class="focus-card">
+          <div class="focus-ring"><span>24:58</span></div>
+          <div>
+            <strong>Focus session</strong>
+            <small>Do Not Disturb on</small>
+          </div>
+        </div>
+
+        <div class="clip-card">
+          <span class="clip-icon">⌘</span>
+          <div>
+            <strong>Copied from Terminal</strong>
+            <small>npm run build &amp;&amp; npm run deploy</small>
+          </div>
+          <span class="clip-key">↩</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="strip" aria-label="Highlights">
+    <div class="wrap strip-inner">
+      <span>No account</span><i></i>
+      <span>No analytics</span><i></i>
+      <span>No subscription</span><i></i>
+      <span>No Dock icon</span><i></i>
+      <span>Everything stored on your Mac</span>
+    </div>
+  </section>
+
+  <section class="section" id="features">
+    <div class="wrap">
+      <p class="kicker">Everything in one popover</p>
+      <h2 class="section-title">Stop juggling windows.</h2>
+      <p class="section-sub">The three things you reach for all day, one click apart. Built to be read at a glance and driven from the keyboard.</p>
+
+      <div class="feature-grid">
+        <article class="feature-card">
+          <div class="icon-tile coral">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v11a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 17.5v-11Z" stroke="currentColor" stroke-width="1.7"/><path d="m8 12 2.5 2.5L16 9" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Todos that land on the right day</h3>
+          <p>Type, press Return, done. Today comes first, tomorrow is next, and anything overdue is called out in red.</p>
+          <ul>
+            <li>Today, Tomorrow and future-day sections</li>
+            <li>Drag to reorder or move between days</li>
+            <li>Space completes, Return edits, ⌘D picks a date</li>
+            <li>A little confetti when you finish something</li>
+          </ul>
+        </article>
+
+        <article class="feature-card">
+          <div class="icon-tile teal">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="7" y="4" width="12" height="16" rx="2.5" stroke="currentColor" stroke-width="1.7"/><path d="M5 8v9.5A2.5 2.5 0 0 0 7.5 20H16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M10.5 9h5M10.5 12.5h5M10.5 16h3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Clipboard history with a memory</h3>
+          <p>Text, links, code, images and files — kept with the app they came from and when. Find it, preview it, copy it back.</p>
+          <ul>
+            <li>Instant search across content and source app</li>
+            <li>Preview overlay with selectable text and images</li>
+            <li>Duplicate copies move to the top with a count</li>
+            <li>Passwords and concealed pasteboard data are skipped</li>
+          </ul>
+        </article>
+
+        <article class="feature-card">
+          <div class="icon-tile gold">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="13" r="7.5" stroke="currentColor" stroke-width="1.7"/><path d="M12 9v4.5l3 1.8M9.5 3h5M12 3v2.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          </div>
+          <h3>A focus timer that leaves you alone</h3>
+          <p>Pick 25, 50 or 90 minutes — or any length up to a day. The menu bar counts down while you work.</p>
+          <ul>
+            <li>Do Not Disturb on and off through Shortcuts</li>
+            <li>Survives sleep, quitting and restarting</li>
+            <li>Soft chime when the time is up</li>
+            <li>No shortcut can end a session — only a confirmed click</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section screens-section" id="screens">
+    <div class="wrap">
+      <p class="kicker">A closer look</p>
+      <h2 class="section-title">Small on purpose.</h2>
+      <p class="section-sub">Every screen fits in a popover. Need more room? The full window is one shortcut away.</p>
+
+      <div class="popover-grid">
+        <figure class="shot-card">
+          <div class="popover-frame small">
+            <img src="assets/popover-todos.png" width="840" height="1140" alt="Todos tab showing overdue, today and tomorrow" loading="lazy">
+          </div>
+          <figcaption><strong>Todos</strong><span>Today first, dates when you need them.</span></figcaption>
+        </figure>
+        <figure class="shot-card">
+          <div class="popover-frame small">
+            <img src="assets/popover-clipboard.png" width="840" height="1140" alt="Clipboard history with text, code and link items" loading="lazy">
+          </div>
+          <figcaption><strong>Clipboard</strong><span>Search, preview and copy back in a keystroke.</span></figcaption>
+        </figure>
+        <figure class="shot-card">
+          <div class="popover-frame small">
+            <img src="assets/popover-focus.png" width="840" height="1140" alt="Focus timer with a countdown ring and Do Not Disturb status" loading="lazy">
+          </div>
+          <figcaption><strong>Focus</strong><span>A countdown that stays out of the way.</span></figcaption>
+        </figure>
+      </div>
+
+      <div class="window-showcase">
+        <div class="window-chrome">
+          <div class="traffic" aria-hidden="true"><i></i><i></i><i></i></div>
+          <span class="window-title">Tic — Clipboard</span>
+          <span class="window-spacer"></span>
+        </div>
+        <img src="assets/window-clipboard.png" width="2000" height="1360" alt="Tic's full window with the clipboard list and preview pane side by side" loading="lazy">
+      </div>
+      <p class="caption">The full window: list on the left, preview on the right. Open it with <kbd>⌘O</kbd>.</p>
+    </div>
+  </section>
+
+  <section class="section" id="shortcuts">
+    <div class="wrap split-grid">
+      <div>
+        <p class="kicker">Keyboard first</p>
+        <h2 class="section-title">Never touch the mouse.</h2>
+        <p class="section-sub">Global shortcuts work from any app. Everything else is a key away once Tic is open.</p>
+        <table class="keys">
+          <tbody>
+            <tr><td><kbd>⌃⌥⌘T</kbd></td><td>Open Tic from anywhere</td></tr>
+            <tr><td><kbd>⇧⌘F</kbd></td><td>Open Focus, ready to start</td></tr>
+            <tr><td><kbd>⌘1</kbd> <kbd>⌘2</kbd> <kbd>⌘3</kbd></td><td>Todos · Clipboard · Focus</td></tr>
+            <tr><td><kbd>⌘O</kbd></td><td>Open the full window</td></tr>
+            <tr><td><kbd>↑</kbd> <kbd>↓</kbd></td><td>Move through a list</td></tr>
+            <tr><td><kbd>space</kbd></td><td>Complete a todo or preview a copy</td></tr>
+            <tr><td><kbd>return</kbd></td><td>Add, copy back, or start</td></tr>
+            <tr><td><kbd>⌘D</kbd></td><td>Pick a date for a todo</td></tr>
+            <tr><td><kbd>delete</kbd></td><td>Delete what's selected</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <aside class="privacy-card">
+        <div class="privacy-icon">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 5 6v5.5c0 4.3 2.9 8.2 7 9.5 4.1-1.3 7-5.2 7-9.5V6l-7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="m9 12 2 2 4-4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Your data stays yours</h3>
+        <p>No account, no sync server, no analytics and no network requests. Tic writes to one folder on this Mac.</p>
+        <pre><code>~/Library/Application&nbsp;Support/Tic/</code></pre>
+        <ul class="checks">
+          <li>Export everything — images included — as one JSON file</li>
+          <li>Import only adds; it never overwrites what's there</li>
+          <li>Password managers and concealed copies are ignored</li>
+          <li>Source code is public and auditable</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section section-install" id="install">
+    <div class="wrap install-grid">
+      <div>
+        <p class="kicker">Install</p>
+        <h2 class="section-title">Under a minute, start to finish.</h2>
+        <ol class="steps">
+          <li>
+            <span class="step-num">1</span>
+            <div><strong>Download the disk image</strong><p><code>Tic-1.0.dmg</code> · 1.6 MB · Apple silicon</p></div>
+          </li>
+          <li>
+            <span class="step-num">2</span>
+            <div><strong>Drag Tic into Applications</strong><p>Open the DMG and drop the app on the Applications shortcut.</p></div>
+          </li>
+          <li>
+            <span class="step-num">3</span>
+            <div><strong>Click the ✓ in the menu bar</strong><p>Tic has no Dock icon. Press <kbd>⌃⌥⌘T</kbd> from any app.</p></div>
+          </li>
+        </ol>
+
+        <div class="download-row">
+          <a class="btn btn-primary btn-large" href="https://github.com/MlLearnerAkash/tic/releases/download/v1.0.0/Tic-1.0.dmg" download>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Download Tic 1.0
+          </a>
+          <a class="btn btn-ghost" href="https://github.com/MlLearnerAkash/tic/releases" target="_blank" rel="noopener">All releases</a>
+        </div>
+        <p class="fineprint checksum">
+          SHA-256 <code>278cdc26…fba54576</code>
+          <a href="https://github.com/MlLearnerAkash/tic/releases/download/v1.0.0/Tic-1.0.dmg.sha256">verify</a>
+        </p>
+      </div>
+
+      <div class="install-art">
+        <div class="dmg-card">
+          <img src="assets/icon-512.png" alt="" width="88" height="88">
+          <div>
+            <strong>Tic-1.0.dmg</strong>
+            <span>Disk image · 1.6 MB</span>
+          </div>
+          <span class="dmg-badge">Free</span>
+        </div>
+
+        <div class="note-card">
+          <strong>First launch</strong>
+          <p>Tic is ad-hoc signed, not notarized. If macOS blocks it, right-click Tic in Applications and choose <b>Open</b> — or clear the quarantine flag:</p>
+          <pre><code>xattr -d com.apple.quarantine /Applications/Tic.app</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section faq-section" id="faq">
+    <div class="wrap faq-wrap">
+      <p class="kicker">Good to know</p>
+      <h2 class="section-title">Questions, answered.</h2>
+
+      <details>
+        <summary>Is Tic really free?</summary>
+        <p>Yes. No trial, no subscription, no account. Download it, use it, and read the source if you like.</p>
+      </details>
+      <details>
+        <summary>Why does macOS warn me on first launch?</summary>
+        <p>Tic is ad-hoc signed rather than notarized by Apple, which requires a paid developer account. Right-click the app → <b>Open</b> once, or run the <code>xattr</code> command above. After that it launches normally.</p>
+      </details>
+      <details>
+        <summary>Does it work on Intel Macs?</summary>
+        <p>The current release is an Apple silicon build (arm64). On an Intel Mac you can build from source with <code>swift build</code> using the steps in the README.</p>
+      </details>
+      <details>
+        <summary>How does the focus timer turn on Do Not Disturb?</summary>
+        <p>macOS has no public API for toggling Focus. Tic runs two Shortcuts you create — “Tic Focus On” and “Tic Focus Off” — and only turns off a mode it turned on. You can rename them in Settings.</p>
+      </details>
+      <details>
+        <summary>Does the clipboard record passwords?</summary>
+        <p>No. Tic ignores pasteboard items marked concealed or private by password managers, and never records while a known password-manager app is frontmost. The list is deliberately conservative.</p>
+      </details>
+      <details>
+        <summary>Where is my data stored?</summary>
+        <p>In <code>~/Library/Application&nbsp;Support/Tic/</code> as JSON plus image files. There is no cloud component. Export and import live in Settings.</p>
+      </details>
+      <details>
+        <summary>Can I build it myself?</summary>
+        <p>Yes. The full SwiftUI source, build script and DMG packaging script are in the <a href="https://github.com/MlLearnerAkash/tic" target="_blank" rel="noopener">GitHub repository</a>. It needs macOS 14+ and the Xcode Command Line Tools.</p>
+      </details>
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <div class="wrap final-inner">
+      <img src="assets/icon-512.png" alt="" width="72" height="72">
+      <h2>One less thing in your way.</h2>
+      <p>Todos, clipboard and focus — in the menu bar, on your Mac, and nowhere else.</p>
+      <a class="btn btn-primary btn-large" href="https://github.com/MlLearnerAkash/tic/releases/download/v1.0.0/Tic-1.0.dmg" download>Download Tic for macOS</a>
+      <span class="final-meta">Free · macOS 14+ · Apple silicon · 1.6 MB</span>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <div class="footer-brand">
+      <img src="assets/icon-64.png" alt="" width="22" height="22">
+      <span>Tic</span>
+      <span class="footer-sep">·</span>
+      <span class="muted">A local menu-bar utility for macOS.</span>
+    </div>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="https://github.com/MlLearnerAkash/tic" target="_blank" rel="noopener">Source</a>
+      <a href="https://github.com/MlLearnerAkash/tic/releases" target="_blank" rel="noopener">Releases</a>
+      <a href="https://github.com/MlLearnerAkash/tic/blob/main/README.md" target="_blank" rel="noopener">README</a>
+      <a href="#install">Install</a>
+    </nav>
+  </div>
+  <div class="wrap footer-fine">
+    <p>Tic is an original app inspired by the product at tocal.app. It is not affiliated with that product and does not copy its assets or code.</p>
+    <p>© 2026 Tic · Made for the Mac.</p>
+  </div>
+</footer>
+<script src="script.js" defer></script>
+</body>
+</html>

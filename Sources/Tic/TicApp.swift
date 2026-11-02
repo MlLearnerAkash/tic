@@ -93,54 +93,132 @@ final class AppDelegate: NSObject, NSApplicationDelegate, AppWindowControlling, 
             seedDemoData()
         }
 
-        let tabs: [TicTab] = [.todos, .clipboard, .focus]
-        for tab in tabs {
-            app.selectedTab = tab
-            let view = MenuBarView()
-                .environmentObject(app)
-                .frame(width: 420, height: 570)
-            render(view, to: "/tmp/tic-popover-\(tab.rawValue).png")
+        let outDir = ProcessInfo.processInfo.environment["TIC_SNAPSHOT_DIR"] ?? "/tmp"
+        try? FileManager.default.createDirectory(atPath: outDir, withIntermediateDirectories: true)
+
+        var jobs: [SnapshotJob] = []
+        for tab in [TicTab.todos, .clipboard, .focus] {
+            jobs.append(SnapshotJob(
+                name: "tic-popover-\(tab.rawValue)",
+                view: AnyView(
+                    MenuBarView()
+                        .environmentObject(app)
+                        .frame(width: 420, height: 570)
+                ),
+                size: NSSize(width: 420, height: 570),
+                prepare: { [weak self] in self?.app.selectedTab = tab }
+            ))
         }
 
-        app.selectedTab = .todos
-        render(
-            FullWindowView().environmentObject(app).frame(width: 1000, height: 680),
-            to: "/tmp/tic-window-todos.png"
-        )
-        app.selectedTab = .clipboard
-        render(
-            FullWindowView().environmentObject(app).frame(width: 1000, height: 680),
-            to: "/tmp/tic-window-clipboard.png"
-        )
-        app.selectedTab = .focus
-        render(
-            FullWindowView().environmentObject(app).frame(width: 1000, height: 680),
-            to: "/tmp/tic-window-focus.png"
-        )
-        render(
-            SettingsView().environmentObject(app).frame(width: 580, height: 680),
-            to: "/tmp/tic-settings.png"
-        )
-
-        if ProcessInfo.processInfo.environment["TIC_DEMO"] == "1" {
-            app.eraseAllData()
+        for tab in [TicTab.todos, .clipboard, .focus] {
+            jobs.append(SnapshotJob(
+                name: "tic-window-\(tab.rawValue)",
+                view: AnyView(
+                    FullWindowView()
+                        .environmentObject(app)
+                        .frame(width: 1000, height: 680)
+                ),
+                size: NSSize(width: 1000, height: 680),
+                prepare: { [weak self] in self?.app.selectedTab = tab }
+            ))
         }
-        NSApp.terminate(nil)
+
+        jobs.append(SnapshotJob(
+            name: "tic-settings",
+            view: AnyView(
+                SettingsView()
+                    .environmentObject(app)
+                    .frame(width: 580, height: 680)
+            ),
+            size: NSSize(width: 580, height: 680),
+            prepare: {}
+        ))
+
+        capture(jobs, at: 0, in: outDir)
     }
 
+    private struct SnapshotJob {
+        let name: String
+        let view: AnyView
+        let size: NSSize
+        let prepare: () -> Void
+    }
+
+    /// Renders each screen through a real window and caches its display. This
+    /// captures ScrollView and LazyVStack content, which ImageRenderer skips.
     @MainActor
-    private func render<V: View>(_ view: V, to path: String) {
-        let renderer = ImageRenderer(content: view)
-        renderer.scale = 2
-        guard let image = renderer.nsImage,
-              let tiff = image.tiffRepresentation,
-              let rep = NSBitmapImageRep(data: tiff),
-              let png = rep.representation(using: .png, properties: [:]) else {
-            NSLog("Tic: snapshot render failed for \(path)")
+    private func capture(_ jobs: [SnapshotJob], at index: Int, in dir: String) {
+        guard index < jobs.count else {
+            if ProcessInfo.processInfo.environment["TIC_DEMO"] == "1" {
+                app.eraseAllData()
+            }
+            NSApp.terminate(nil)
             return
         }
-        try? png.write(to: URL(fileURLWithPath: path))
-        NSLog("Tic: wrote snapshot \(path)")
+
+        let job = jobs[index]
+        job.prepare()
+
+        let hosting = NSHostingView(rootView: job.view)
+        hosting.frame = NSRect(origin: .zero, size: job.size)
+
+        let window = NSWindow(
+            contentRect: NSRect(origin: .zero, size: job.size),
+            styleMask: [.borderless],
+            backing: .buffered,
+            defer: false
+        )
+        window.contentView = hosting
+        window.backgroundColor = .clear
+        window.isOpaque = false
+        window.hasShadow = false
+        window.level = .floating
+        window.collectionBehavior = [.canJoinAllSpaces, .stationary]
+
+        if let screen = NSScreen.main {
+            window.setFrameOrigin(NSPoint(
+                x: screen.visibleFrame.minX + 24,
+                y: screen.visibleFrame.maxY - job.size.height - 24
+            ))
+        }
+        window.orderFrontRegardless()
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            hosting.layoutSubtreeIfNeeded()
+            window.displayIfNeeded()
+
+            let scale: CGFloat = 2
+            guard let rep = NSBitmapImageRep(
+                bitmapDataPlanes: nil,
+                pixelsWide: Int(job.size.width * scale),
+                pixelsHigh: Int(job.size.height * scale),
+                bitsPerSample: 8,
+                samplesPerPixel: 4,
+                hasAlpha: true,
+                isPlanar: false,
+                colorSpaceName: .deviceRGB,
+                bytesPerRow: 0,
+                bitsPerPixel: 0
+            ) else {
+                NSLog("Tic: no bitmap for \(job.name)")
+                window.orderOut(nil)
+                self.capture(jobs, at: index + 1, in: dir)
+                return
+            }
+            rep.size = job.size
+            hosting.cacheDisplay(in: hosting.bounds, to: rep)
+
+            if let png = rep.representation(using: .png, properties: [:]) {
+                let path = (dir as NSString).appendingPathComponent("\(job.name).png")
+                try? png.write(to: URL(fileURLWithPath: path))
+                NSLog("Tic: wrote snapshot \(path)")
+            }
+
+            window.orderOut(nil)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                self.capture(jobs, at: index + 1, in: dir)
+            }
+        }
     }
 
     private func seedDemoData() {

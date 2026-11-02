@@ -1,5 +1,7 @@
 # Tic
 
+**[Download for macOS](https://github.com/MlLearnerAkash/tic/releases/latest)** · **[Website](https://mllearnerakash.github.io/tic/)**
+
 A native macOS menu-bar app with three tools in one icon:
 
 - **Todos** — today first, dated lists, drag to reorder, confetti when you finish something.
@@ -7,6 +9,12 @@ A native macOS menu-bar app with three tools in one icon:
 - **Focus** — a countdown in the menu bar, Do Not Disturb through Shortcuts, a soft chime, and sessions that survive sleep, quit and restart.
 
 No account. No cloud. No analytics. Data lives in `~/Library/Application Support/Tic/` and exports as a single JSON file with images included.
+
+<p align="center">
+  <img src="docs/assets/popover-todos.png" width="260" alt="Tic's Todos tab">
+  <img src="docs/assets/popover-clipboard.png" width="260" alt="Tic's Clipboard tab">
+  <img src="docs/assets/popover-focus.png" width="260" alt="Tic's Focus tab">
+</p>
 
 > Tic is an original, feature-matched implementation inspired by the product at tocal.app. It is not affiliated with that product and does not copy its assets or code.
 
