@@ -10,6 +10,16 @@ No account. No cloud. No analytics. Data lives in `~/Library/Application Support
 
 > Tic is an original, feature-matched implementation inspired by the product at tocal.app. It is not affiliated with that product and does not copy its assets or code.
 
+## Install
+
+Download `Tic-1.0.dmg` from [Releases](https://github.com/MlLearnerAkash/tic/releases), open it, and drag **Tic** into **Applications**.
+
+The app is ad-hoc signed, not notarized. On first launch macOS may block it. Either right-click the app and choose **Open**, or clear the quarantine flag:
+
+```sh
+xattr -d com.apple.quarantine /Applications/Tic.app
+```
+
 ## Build
 
 Requirements: macOS 14+, Xcode Command Line Tools (Swift 5.9+). Full Xcode is not required.
@@ -24,6 +34,13 @@ The build produces `build/Tic.app`, ad-hoc signed so it runs locally. To install
 
 ```sh
 cp -R build/Tic.app /Applications/
+```
+
+To package a drag-to-install disk image:
+
+```sh
+./scripts/make-dmg.sh
+# -> build/Tic-1.0.dmg (+ .sha256)
 ```
 
 ## First run
